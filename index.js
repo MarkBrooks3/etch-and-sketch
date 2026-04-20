@@ -1,7 +1,8 @@
 const container = document.querySelector('#container');
 const sizeButton = document.querySelector('#size');
+const blackButton = document.querySelector('#black');
 const randomButton = document.querySelector('#random');
-const darkerButtons = document.querySelector('#darker');
+const darkerButton = document.querySelector('#darker');
 
 let squares = 16;
 let brush = 'black';
@@ -17,7 +18,7 @@ function createGrid(size) {
     square.addEventListener('mouseover', () => {
       switch (brush) {
         case 'black':
-          square.classList.toggle('color');
+          square.classList.add('color');
           console.log('hello');
           break;
         case 'random':
@@ -27,7 +28,14 @@ function createGrid(size) {
           )} ${Math.floor(Math.random() * 255)} ${Math.floor(
             Math.random() * 255
           )})`;
-
+          break;
+        case 'darker':
+          square.classList.add('color');
+          if (!square.style.opacity) {
+            square.style.opacity = '0.1';
+          } else {
+            square.style.opacity = `${parseFloat(square.style.opacity) + 0.1}`;
+          }
           break;
       }
     });
@@ -53,6 +61,8 @@ sizeButton.addEventListener('click', () => {
   }
 });
 
-randomButton.addEventListener('click', () => {
-  brush = 'random';
-});
+blackButton.addEventListener('click', () => (brush = 'black'));
+
+randomButton.addEventListener('click', () => (brush = 'random'));
+
+darkerButton.addEventListener('click', () => (brush = 'darker'));

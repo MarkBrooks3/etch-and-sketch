@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+#container {
+  background-color: mintcream;
+  display: flex;
+  flex-flow: row wrap;
+  width: 500px;
+}
+
+.square {
+  background-color: lightgray;
+  border: 1px solid gray;
+  height: 25px;
+  width: 25px;
+  padding: 10px;
+  margin: 2px;
+}

@@ -1,9 +1,13 @@
 const container = document.querySelector('#container');
-const SQUARES = 16 * 16;
-container.style.width = `${Math.sqrt(SQUARES) * 30}px`;
+let squares = 20 * 20;
 
-for (let i = 0; i < SQUARES; i++) {
+for (let i = 0; i < squares; i++) {
   let square = document.createElement('div');
+  square.style.width = `${100 / Math.sqrt(squares)}%`;
   square.classList.add('square');
   container.appendChild(square);
+
+  square.addEventListener('mouseover', () => {
+    square.classList.toggle('color');
+  });
 }

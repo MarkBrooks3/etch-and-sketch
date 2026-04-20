@@ -1,7 +1,10 @@
 const container = document.querySelector('#container');
-const button = document.querySelector('button');
+const sizeButton = document.querySelector('#size');
+const randomButton = document.querySelector('#random');
+const darkerButtons = document.querySelector('#darker');
 
 let squares = 16;
+let brush = 'black';
 
 function createGrid(size) {
   size *= size;
@@ -12,7 +15,21 @@ function createGrid(size) {
     container.appendChild(square);
 
     square.addEventListener('mouseover', () => {
-      square.classList.toggle('color');
+      switch (brush) {
+        case 'black':
+          square.classList.toggle('color');
+          console.log('hello');
+          break;
+        case 'random':
+          console.log(Math.floor(Math.random() * 255));
+          square.style.backgroundColor = `rgb(${Math.floor(
+            Math.random() * 255
+          )} ${Math.floor(Math.random() * 255)} ${Math.floor(
+            Math.random() * 255
+          )})`;
+
+          break;
+      }
     });
   }
 }
@@ -26,13 +43,16 @@ function deleteGrid() {
 
 createGrid(squares);
 
-button.addEventListener('click', () => {
+sizeButton.addEventListener('click', () => {
   const input = parseInt(document.querySelector('input').value, 10);
-  console.log(typeof input);
   if (!input || input < 1 || input > 100) {
     alert('please enter a number between 1 and 100');
   } else {
     deleteGrid();
     createGrid(input);
   }
+});
+
+randomButton.addEventListener('click', () => {
+  brush = 'random';
 });
